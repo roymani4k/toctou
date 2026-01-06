@@ -17,7 +17,9 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           
       - name: verify
-        run: ls -la; test -e evil.sh && exit 1
+        run: |
+          ls -la
+          [[ -f evil.sh ]] && exit 1
           
       - name: time
         run: sleep 10s
