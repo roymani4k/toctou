@@ -18,8 +18,10 @@ jobs:
           
       - name: verify
         run: |
-          ls -la
-          [[ -f evil.sh ]] && exit 1
+          if [[ -f evil.sh ]]; then
+            echo "evil.sh found — failing build"
+            exit 1
+          fi
           
       - name: time
         run: sleep 10s
