@@ -24,7 +24,7 @@ jobs:
           fi
           
       - name: time
-        run: sleep 1s
+        run: sleep 0.5
     
       - name: privilege action
         env:
