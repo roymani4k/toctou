@@ -30,6 +30,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: gh pr merge -b 'approved' "${PR_NUMBER}"
+        run: gh pr merge --squash -b 'approved' "${PR_NUMBER}"
 
      
