@@ -22,14 +22,13 @@ jobs:
             echo "evil.sh found — failing build"
             exit 1
           fi
-          
-      - name: time
-        run: sleep 0.5
     
       - name: privilege action
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: gh pr merge --squash -b 'approved' "${PR_NUMBER}"
+        run: |
+          sleep 0.5
+          gh pr merge --squash -b 'approved' "${PR_NUMBER}"
 
      
