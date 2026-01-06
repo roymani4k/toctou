@@ -1,0 +1,29 @@
+name: thight toctou
+on: 
+  issue_comment:
+        
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  a: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          
+      - name: verify
+        run: test -e evil.txt && exit 1
+          
+      - name: time
+        run: sleep 10s
+    
+      - name: privilege action
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr review --approve "${PR_NUMBER}"
+
+     
