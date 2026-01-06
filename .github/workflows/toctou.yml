@@ -28,7 +28,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          sleep 0.5
+          sleep 1
           gh pr merge --squash -b 'approved' "${PR_NUMBER}"
 
      
